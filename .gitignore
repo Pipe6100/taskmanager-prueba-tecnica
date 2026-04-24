@@ -1,0 +1,33 @@
+# ===== Visual Studio / Rider =====
+.vs/
+.idea/
+*.user
+*.suo
+
+# ===== .NET =====
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# ===== Logs =====
+*.log
+
+# ===== Frontend (Node / Vite) — lo usaremos en la Fase 4 =====
+node_modules/
+dist/
+.vite/
+*.local
+
+# ===== Configuración con secretos =====
+# (más adelante usaremos User Secrets para la cadena de conexión)
+appsettings.Local.json
+
+# ===== SO =====
+.DS_Store
+Thumbs.db
+
+# ===== Archivos sensibles =====
+*.env
+*.env.local
