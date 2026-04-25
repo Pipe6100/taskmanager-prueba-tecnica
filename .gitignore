@@ -31,3 +31,7 @@ Thumbs.db
 # ===== Archivos sensibles =====
 *.env
 *.env.local
+
+# TypeScript build cache
+*.tsbuildinfo
+client/*.tsbuildinfo
