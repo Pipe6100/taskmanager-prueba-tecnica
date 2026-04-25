@@ -94,6 +94,16 @@ npm run dev
 
 La aplicación queda disponible en `http://localhost:5173`.
 
+### ⚠️ Configuración opcional
+
+Si el frontend no logra conectarse al backend, crear un archivo:
+
+client/.env
+
+con el siguiente contenido:
+
+VITE_API_URL=http://localhost:5269
+
 ---
 
 ## 🧩 Funcionalidades
