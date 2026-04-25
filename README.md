@@ -1,89 +1,90 @@
-TaskManager — Prueba Técnica Full Stack
+🚀 TaskManager — Prueba Técnica Full Stack
 
 Aplicación web para la gestión de tareas por proyecto, desarrollada como prueba técnica para el rol de Desarrollador Full Stack Semi-Senior.
 
-Stack: ASP.NET Core 9 · React 18 + Vite + TypeScript · Tailwind CSS 3 · SQL Server · EF Core 9
-
+🧱 Stack Tecnológico
+Backend: ASP.NET Core 9 + Entity Framework Core 9
+Frontend: React 18 + Vite + TypeScript
+Estilos: Tailwind CSS 3
+Base de datos: SQL Server / LocalDB
 🏗️ Arquitectura
 
 El proyecto está organizado como un monorepo:
 
 .
-├── src/                            # Backend (.NET solution)
-│   ├── TaskManager.Domain/         # Entidades y enums (núcleo del dominio)
-│   ├── TaskManager.Application/    # DTOs, servicios, interfaces, validaciones
-│   ├── TaskManager.Infrastructure/ # DbContext, repositorios, migraciones (EF Core)
-│   └── TaskManager.Api/            # Controllers, middleware, configuración HTTP
+├── src/                            # Backend (.NET)
+│   ├── TaskManager.Domain/         # Entidades y enums
+│   ├── TaskManager.Application/    # Servicios, DTOs, interfaces, validaciones
+│   ├── TaskManager.Infrastructure/ # EF Core, repositorios, migraciones
+│   └── TaskManager.Api/            # Controllers, middleware
 ├── client/                         # Frontend (React + Vite)
 │   └── src/
-│       ├── api/                    # Cliente Axios y servicios HTTP
-│       ├── components/             # Componentes UI reutilizables
-│       ├── features/               # Componentes por dominio
-│       ├── hooks/                  # Custom hooks
-│       ├── pages/                  # Páginas (React Router)
-│       ├── lib/                    # Utilidades
-│       └── types/                  # Tipos TypeScript
 ├── db/
-│   └── init.sql                    # Script SQL alternativo
+│   └── init.sql                    # Script alternativo BD
 └── TaskManager.sln
 
-El backend implementa Clean Architecture (Domain ← Application ← Infrastructure ← Api), garantizando bajo acoplamiento y alta mantenibilidad.
+Se implementa Clean Architecture:
 
-🚀 Ejecución local (paso a paso)
-🔧 Requisitos previos
+Domain ← Application ← Infrastructure ← Api
+
+✔ Bajo acoplamiento
+✔ Alta mantenibilidad
+✔ Testeable
+
+⚡ Ejecución rápida (TL;DR)
+git clone https://github.com/[TU-USUARIO]/[TU-REPO].git
+cd [TU-REPO]
+
+# Backend
+dotnet restore
+dotnet ef database update --project src/TaskManager.Infrastructure --startup-project src/TaskManager.Api
+dotnet run --project src/TaskManager.Api
+
+# Frontend (otra terminal)
+cd client
+npm install
+npm run dev
+🧰 Instalación paso a paso
+🔧 Requisitos
 Herramienta	Versión
 .NET SDK	9.0+
 Node.js	20.x LTS
 SQL Server	2019+ o LocalDB
 Git	Última
-1. Clonar el repositorio
-git clone https://github.com/Pipe6100/taskmanager-prueba-tecnica.git
-cd taskmanager-prueba-tecnica
+1. Clonar repositorio
+git clone https://github.com/[TU-USUARIO]/[TU-REPO].git
+cd [TU-REPO]
 
-⚠️ El cd usa el nombre de la carpeta creada (sin .git).
+⚠️ No usar .git en el cd.
 
-2. Configurar la base de datos
+2. Configuración de base de datos
 
 Editar:
 
 src/TaskManager.Api/appsettings.json
 
-Usar una cadena portable:
+Usar esta configuración (RECOMENDADO):
 
 "ConnectionStrings": {
   "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TaskManagerDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
 }
-📝 Alternativa
+🔎 Alternativas válidas
 Server=localhost\\SQLEXPRESS;
-
-❌ No usar nombres de equipo (ej: DESKTOP-XXXXX).
-
-3. Levantar el backend
-
-Desde la raíz:
-
+Server=localhost;
+❌ NO usar
+Server=DESKTOP-XXXXX
+3. Ejecutar backend
 dotnet restore
 dotnet ef database update --project src/TaskManager.Infrastructure --startup-project src/TaskManager.Api
 dotnet run --project src/TaskManager.Api
-✔️ Esto hace automáticamente:
-Crea la BD TaskManagerDb
-Aplica migraciones
-Inserta datos de prueba (3 proyectos, 6 tareas)
-🔁 Alternativa (sin EF CLI)
-
-Ejecutar:
-
-db/init.sql
-
-en SQL Server Management Studio o Azure Data Studio.
-
-📍 Backend
-API: http://localhost:5269
-Swagger: http://localhost:5269/swagger
-4. Levantar el frontend
-
-En otra terminal:
-
+✔️ Esto hace automáticamente
+Crea la base de datos
+Ejecuta migraciones
+Inserta datos de prueba (3 proyectos / 6 tareas)
+📍 Backend disponible en
+API → http://localhost:5269
+Swagger → http://localhost:5269/swagger
+4. Ejecutar frontend
 cd client
 npm install
 npm run dev
@@ -92,75 +93,72 @@ npm run dev
 Crear archivo:
 
 client/.env
-
-con:
-
 VITE_API_URL=http://localhost:5269
 📍 Frontend
+
 http://localhost:5173
-⚠️ Solución de problemas comunes
-Error	Causa	Solución
-No conecta a BD	Instancia incorrecta	Usar (localdb)\MSSQLLocalDB
-dotnet ef no funciona	No instalado	dotnet tool install --global dotnet-ef
-Swagger no carga	Backend detenido	Ejecutar dotnet run
-Frontend sin datos	API URL incorrecta	Revisar .env
-Error CORS	Configuración backend	Verificar CORS
+
+⚠️ Solución de problemas
+Problema	Causa	Solución
+No conecta BD	Server incorrecto	Usar (localdb)\MSSQLLocalDB
+dotnet ef falla	No instalado	dotnet tool install --global dotnet-ef
+Swagger no abre	Backend detenido	Ejecutar dotnet run
+Frontend vacío	API URL incorrecta	Revisar .env
+Error CORS	Backend config	Revisar CORS
 🧩 Funcionalidades
 Backend
 CRUD de Proyectos y Tareas
 Filtros + búsqueda + paginación
 Cambio rápido de estado (PATCH)
 Validaciones con FluentValidation
-Manejo de errores (ProblemDetails)
+Manejo de errores (RFC 7807)
 Swagger
 Frontend
 Listado de proyectos
-Gestión de tareas por proyecto
+Gestión de tareas
 Filtros y búsqueda
 Modales CRUD
-Estados de carga y errores
-Diseño responsive
-Indicador de tareas vencidas
+Indicadores visuales
+Manejo de estados (loading/error)
+UI responsive
 🛠️ Decisiones técnicas
 Backend
 Clean Architecture
 Repository Pattern + Unit of Work
-Enum como string (legibilidad BD)
-Middleware global de excepciones
+Enum como string
+Middleware global de errores
 Validación desacoplada
 AsNoTracking() para performance
 Eliminación en cascada
 Paginación desde backend
 Frontend
 TypeScript (tipado fuerte)
-Vite (alto rendimiento)
+Vite (rápido y moderno)
 Tailwind CSS 3
-Custom hooks para estado
+Custom hooks (useTasks, useProjects)
 Componentes reutilizables
 Actualización optimista
-Variable de entorno (VITE_API_URL)
+Configuración por .env
 🧪 Endpoints
 
-Acceder en:
+Swagger:
 http://localhost:5269/swagger
 
-Método	Endpoint	Descripción
-GET	/api/projects	Listar proyectos
-GET	/api/projects/{id}	Obtener proyecto
-POST	/api/projects	Crear
-PUT	/api/projects/{id}	Actualizar
-DELETE	/api/projects/{id}	Eliminar
-GET	/api/tasks	Listar tareas
-GET	/api/tasks/{id}	Obtener tarea
-POST	/api/tasks	Crear
-PUT	/api/tasks/{id}	Actualizar
-PATCH	/api/tasks/{id}/status	Cambiar estado
-DELETE	/api/tasks/{id}	Eliminar
+Método	Endpoint
+GET	/api/projects
+POST	/api/projects
+GET	/api/tasks
+POST	/api/tasks
+PATCH	/api/tasks/{id}/status
+DELETE	/api/tasks/{id}
 📝 Notas finales
-Enfoque en claridad, mantenibilidad y buenas prácticas
-No incluye (por alcance): autenticación, tests, docker
+Enfoque en claridad y buenas prácticas
+No incluye (por alcance):
+Autenticación
+Tests
+Docker
 Commits bajo estándar Conventional Commits
 👨‍💻 Autor
 
-Juan Felipe Loaiza Facundo
+[Juan Felipe Loaiza Facundo]
 Abril 2026
