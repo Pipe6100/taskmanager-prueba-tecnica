@@ -59,11 +59,12 @@ Edita `src/TaskManager.Api/appsettings.json` y ajusta el `Server` de la connecti
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=TU_INSTANCIA;Database=TaskManagerDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
+  "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TaskManagerDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
 }
 ```
-
 Ejemplos comunes de `Server`: `localhost`, `.`, `localhost\SQLEXPRESS`, `.\SQLEXPRESS`.
+
+⚠️ Nota: Si la conexión falla, asegúrate de tener LocalDB o SQL Server Express instalado.
 
 ### 3. Levantar el backend
 
