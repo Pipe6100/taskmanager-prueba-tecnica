@@ -1,7 +1,6 @@
 namespace TaskManager.Application.DTOs.Tasks;
 
 /// <summary>
-/// Parámetros de filtrado, búsqueda y paginación para el listado de tareas.
 /// </summary>
 public class TaskQueryParameters
 {

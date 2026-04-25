@@ -1,8 +1,6 @@
 namespace TaskManager.Application.Exceptions;
 
 /// <summary>
-/// Se lanza cuando una entidad solicitada no existe en la base de datos.
-/// El middleware global la traduce a HTTP 404 Not Found.
 /// </summary>
 public class NotFoundException : Exception
 {

@@ -49,8 +49,6 @@ public class TaskService : ITaskService
 
     public async Task<TaskDto> CreateAsync(CreateTaskDto dto, CancellationToken cancellationToken = default)
     {
-        // Validamos que el proyecto exista antes de crear la tarea.
-        // La FK de SQL Server también lo haría, pero queremos un mensaje de error claro.
         var projectExists = await _projectRepository.ExistsAsync(dto.ProjectId, cancellationToken);
         if (!projectExists)
             throw new NotFoundException(nameof(Project), dto.ProjectId);
@@ -68,7 +66,6 @@ public class TaskService : ITaskService
         await _taskRepository.AddAsync(task, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        // Recargamos para incluir el nombre del proyecto en el DTO.
         var created = await _taskRepository.GetByIdAsNoTrackingAsync(task.Id, cancellationToken);
         return MapToDto(created!);
     }

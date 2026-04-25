@@ -11,7 +11,6 @@ public class ValidationFilter : IAsyncActionFilter
         ActionExecutingContext context,
         ActionExecutionDelegate next)
     {
-        // Buscamos el primer argumento del action que tenga un validator registrado
         foreach (var argument in context.ActionArguments.Values)
         {
             if (argument is null) continue;

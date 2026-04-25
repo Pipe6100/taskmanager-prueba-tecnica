@@ -55,7 +55,6 @@ public class TaskRepository : ITaskRepository
 
     public async Task<TaskItem?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        // Versión con tracking, para Update/Delete
         return await _context.Tasks
             .Include(t => t.Project)
             .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
@@ -63,7 +62,6 @@ public class TaskRepository : ITaskRepository
 
     public async Task<TaskItem?> GetByIdAsNoTrackingAsync(int id, CancellationToken cancellationToken = default)
     {
-        // Versión sin tracking, fuerza recarga desde BD (ideal para retornar después de crear)
         return await _context.Tasks
             .Include(t => t.Project)
             .AsNoTracking()

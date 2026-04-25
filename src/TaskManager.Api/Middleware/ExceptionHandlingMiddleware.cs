@@ -62,7 +62,6 @@ public class ExceptionHandlingMiddleware
             )
         };
 
-        // Loguear como error solo las excepciones inesperadas
         if (statusCode == HttpStatusCode.InternalServerError)
             _logger.LogError(exception, "Unhandled exception while processing {Path}", context.Request.Path);
 

@@ -16,7 +16,7 @@ public class ProjectsController : ControllerBase
         _projectService = projectService;
     }
 
-    /// <summary>Devuelve todos los proyectos con su conteo de tareas.</summary>
+    /// <summary></summary>
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<ProjectDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ public class ProjectsController : ControllerBase
         return Ok(projects);
     }
 
-    /// <summary>Devuelve un proyecto específico por su ID.</summary>
+    /// <summary></summary>
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(ProjectDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -35,7 +35,7 @@ public class ProjectsController : ControllerBase
         return Ok(project);
     }
 
-    /// <summary>Crea un nuevo proyecto.</summary>
+    /// <summary></summary>
     [HttpPost]
     [ProducesResponseType(typeof(ProjectDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -47,7 +47,7 @@ public class ProjectsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
-    /// <summary>Actualiza un proyecto existente.</summary>
+    /// <summary></summary>
     [HttpPut("{id:int}")]
     [ProducesResponseType(typeof(ProjectDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,7 +61,7 @@ public class ProjectsController : ControllerBase
         return Ok(updated);
     }
 
-    /// <summary>Elimina un proyecto y todas sus tareas asociadas (cascada).</summary>
+    ///<summary></summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

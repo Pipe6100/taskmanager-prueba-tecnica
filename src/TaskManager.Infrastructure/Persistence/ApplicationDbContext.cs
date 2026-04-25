@@ -16,7 +16,6 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // ---- Configuración de Project ----
         modelBuilder.Entity<Project>(entity =>
         {
             entity.HasKey(p => p.Id);
@@ -37,7 +36,6 @@ public class ApplicationDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // ---- Configuración de TaskItem ----
         modelBuilder.Entity<TaskItem>(entity =>
         {
             entity.HasKey(t => t.Id);
@@ -61,14 +59,11 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(t => t.Status);
         });
 
-        // ---- Datos Seed ----
         SeedData(modelBuilder);
     }
 
     private static void SeedData(ModelBuilder modelBuilder)
     {
-        // IMPORTANTE: las fechas del seed deben ser fijas (no DateTime.UtcNow),
-        // de lo contrario EF generaría una migración nueva en cada build.
         var seedDate = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         modelBuilder.Entity<Project>().HasData(
@@ -96,7 +91,6 @@ public class ApplicationDbContext : DbContext
         );
 
         modelBuilder.Entity<TaskItem>().HasData(
-            // Proyecto 1: Rediseño del sitio web
             new TaskItem
             {
                 Id = 1,
@@ -128,7 +122,6 @@ public class ApplicationDbContext : DbContext
                 CreatedAt = seedDate
             },
 
-            // Proyecto 2: App móvil de ventas
             new TaskItem
             {
                 Id = 4,
@@ -150,7 +143,6 @@ public class ApplicationDbContext : DbContext
                 CreatedAt = seedDate
             },
 
-            // Proyecto 3: Automatización de reportes
             new TaskItem
             {
                 Id = 6,

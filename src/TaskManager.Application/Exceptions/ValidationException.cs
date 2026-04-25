@@ -1,8 +1,6 @@
 namespace TaskManager.Application.Exceptions;
 
 /// <summary>
-/// Se lanza cuando los datos de entrada no pasan las reglas de validación.
-/// El middleware global la traduce a HTTP 400 Bad Request con la lista de errores.
 /// </summary>
 public class ValidationException : Exception
 {

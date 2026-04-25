@@ -18,8 +18,6 @@ public class TasksController : ControllerBase
     }
 
     /// <summary>
-    /// Devuelve un listado paginado de tareas con filtros opcionales.
-    /// Filtros: projectId, status (Pending/InProgress/Completed), search (busca en título y descripción).
     /// </summary>
     [HttpGet]
     [ProducesResponseType(typeof(PagedResult<TaskDto>), StatusCodes.Status200OK)]
@@ -31,7 +29,7 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-    /// <summary>Devuelve una tarea específica por su ID.</summary>
+    /// <summary></summary>
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(TaskDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,7 +39,7 @@ public class TasksController : ControllerBase
         return Ok(task);
     }
 
-    /// <summary>Crea una nueva tarea asociada a un proyecto existente.</summary>
+    /// <summary></summary>
     [HttpPost]
     [ProducesResponseType(typeof(TaskDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -54,7 +52,7 @@ public class TasksController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
-    /// <summary>Actualiza completamente una tarea existente.</summary>
+    /// <summary></summary>
     [HttpPut("{id:int}")]
     [ProducesResponseType(typeof(TaskDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -69,8 +67,6 @@ public class TasksController : ControllerBase
     }
 
     /// <summary>
-    /// Cambia únicamente el estado de una tarea (Pending, InProgress, Completed).
-    /// Endpoint dedicado para la operación más frecuente en una app de tareas.
     /// </summary>
     [HttpPatch("{id:int}/status")]
     [ProducesResponseType(typeof(TaskDto), StatusCodes.Status200OK)]
@@ -85,7 +81,7 @@ public class TasksController : ControllerBase
         return Ok(updated);
     }
 
-    /// <summary>Elimina una tarea.</summary>
+    /// <summary></summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

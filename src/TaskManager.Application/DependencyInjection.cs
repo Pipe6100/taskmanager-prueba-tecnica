@@ -12,7 +12,6 @@ public static class DependencyInjection
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<ITaskService, TaskService>();
 
-        // Registra automáticamente todos los validators del assembly de Application.
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
         return services;

@@ -1,9 +1,5 @@
 namespace TaskManager.Application.Common;
 
-/// <summary>
-/// Representa una página de resultados con metadatos de paginación.
-/// Usado por endpoints que devuelven listas potencialmente grandes.
-/// </summary>
 public class PagedResult<T>
 {
     public IReadOnlyList<T> Items { get; init; } = Array.Empty<T>();

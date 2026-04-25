@@ -4,9 +4,7 @@ using TaskManager.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ==========================================
-//  Servicios
-// ==========================================
+
 
 builder.Services.AddControllers(options =>
 {
@@ -16,7 +14,6 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS para permitir el frontend de Vite (5173 por defecto)
 const string CorsPolicy = "AllowFrontend";
 builder.Services.AddCors(options =>
 {
@@ -35,7 +32,6 @@ var app = builder.Build();
 //  Pipeline HTTP
 // ==========================================
 
-// Middleware de excepciones SIEMPRE PRIMERO
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())

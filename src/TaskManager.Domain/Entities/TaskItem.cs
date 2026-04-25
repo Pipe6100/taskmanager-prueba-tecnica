@@ -11,7 +11,6 @@ public class TaskItem
     public DateTime? DueDate { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // Clave foránea hacia Project
     public int ProjectId { get; set; }
     public Project Project { get; set; } = null!;
 }
