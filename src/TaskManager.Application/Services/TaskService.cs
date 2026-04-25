@@ -69,7 +69,7 @@ public class TaskService : ITaskService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         // Recargamos para incluir el nombre del proyecto en el DTO.
-        var created = await _taskRepository.GetByIdAsync(task.Id, cancellationToken);
+        var created = await _taskRepository.GetByIdAsNoTrackingAsync(task.Id, cancellationToken);
         return MapToDto(created!);
     }
 
