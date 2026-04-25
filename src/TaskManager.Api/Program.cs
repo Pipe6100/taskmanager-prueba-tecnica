@@ -1,28 +1,25 @@
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Infrastructure.Persistence;
+using TaskManager.Application;
+using TaskManager.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ==========================================
-//  Configuración de servicios (DI container)
+//  Configuración de servicios
 // ==========================================
 
-// Controllers (MVC)
 builder.Services.AddControllers();
 
-// Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Entity Framework Core con SQL Server
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+// Capas de la aplicación (extensión)
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
 // ==========================================
-//  Configuración del pipeline HTTP
+//  Pipeline HTTP
 // ==========================================
 
 if (app.Environment.IsDevelopment())
